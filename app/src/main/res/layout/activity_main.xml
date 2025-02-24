@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@android:color/background_dark"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <!-- Экран для ввода выражения -->
+    <TextView
+        android:id="@+id/match_operation"
+        android:layout_width="match_parent"
+        android:layout_height="110sp"
+        android:ellipsize="start"
+        android:gravity="end|center_vertical"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="45sp"
+        android:singleLine="true"/>
+
+    <!-- Экран для результата -->
+    <TextView
+        android:id="@+id/match_result"
+        android:layout_width="match_parent"
+        android:layout_height="150sp"
+        android:ellipsize="end"
+        android:gravity="end|center_vertical"
+        android:textColor="@android:color/white"
+        android:textSize="70sp"
+        android:singleLine="true"/>
+
+    <!-- Калькулятор -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:id="@+id/ac_btn"
+                android:text="AC"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:id="@+id/scl_btn"
+                android:text="("
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:id="@+id/scr_btn"
+                android:text=")"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:id="@+id/del_btn"
+                android:text="/"
+                android:onClick="onButtonClick" />
+        </LinearLayout>
+
+        <!-- Row 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_7"
+                android:text="7"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_8"
+                android:text="8"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_9"
+                android:text="9"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:id="@+id/mult_btn"
+                android:text="×"
+                android:onClick="onButtonClick" />
+        </LinearLayout>
+
+        <!-- Row 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_4"
+                android:text="4"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_5"
+                android:text="5"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_6"
+                android:text="6"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:id="@+id/plus_btn"
+                android:text="+"
+                android:onClick="onButtonClick" />
+        </LinearLayout>
+
+        <!-- Row 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_1"
+                android:text="1"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_2"
+                android:text="2"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_3"
+                android:text="3"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:id="@+id/minus_btn"
+                android:text="-"
+                android:onClick="onButtonClick" />
+        </LinearLayout>
+
+        <!-- Row 5 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_point"
+                android:text="."
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_0"
+                android:text="0"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/NumberButton"
+                android:id="@+id/btn_back"
+                android:text="⌫"
+                android:onClick="onButtonClick" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/ActionButton"
+                android:id="@+id/btn_ravno"
+                android:text="="
+                android:onClick="onButtonClick" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
