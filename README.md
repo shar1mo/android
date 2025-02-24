@@ -14,5 +14,5 @@ a minimal yet powerful calculator application for Android, built with **Kotlin**
 
 1. clone the repository:
    ```sh
-   git clone https://github.com/YOUR_USERNAME/android.git
+   git clone https://github.com/shar1mo/android.git
    cd android
