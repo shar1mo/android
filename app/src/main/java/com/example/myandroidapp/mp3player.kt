@@ -20,6 +20,7 @@ class mp3player : AppCompatActivity() {
     private lateinit var prev: Button
     private lateinit var next: Button
     private lateinit var playlist: Array<MediaPlayer>
+    private lateinit var songTitles : Array<String>
     private var indexSound = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,10 @@ class mp3player : AppCompatActivity() {
             MediaPlayer.create(this@mp3player,R.raw.bmb),
             MediaPlayer.create(this@mp3player,R.raw.boulev)
         )
+        songTitles = arrayOf(
+            "bmb",
+            "boulevard"
+        )
         seekbar = findViewById(R.id.seekbar)
         seekbar.progress = 0
     }
@@ -47,6 +52,7 @@ class mp3player : AppCompatActivity() {
         play.setOnClickListener{
             if(!playlist[indexSound].isPlaying){
             playlist[indexSound].start()
+                songname.text = "${songTitles[indexSound]}"
             }else{
                 playlist[indexSound].pause()
             }
@@ -57,6 +63,7 @@ class mp3player : AppCompatActivity() {
 
             indexSound = (indexSound + 1) % playlist.size
             playlist[indexSound].start()
+            songname.text = "${songTitles[indexSound]}"
         }
         prev.setOnClickListener{
             playlist[indexSound].stop()
@@ -68,6 +75,7 @@ class mp3player : AppCompatActivity() {
                 indexSound = (indexSound - 1) % playlist.size
             }
             playlist[indexSound].start()
+            songname.text = "${songTitles[indexSound]}"
         }
         seekbar.max = playlist[indexSound].duration
         seekbar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
@@ -87,9 +95,9 @@ class mp3player : AppCompatActivity() {
         })
         runnable = Runnable {
             seekbar.progress = playlist[indexSound].currentPosition
-            handler.postDelayed(runnable, 1000)
+            handler.postDelayed(runnable, 0)
         }
-        handler.postDelayed(runnable, 1000)
+        handler.postDelayed(runnable, 0)
         playlist[indexSound].setOnCompletionListener {
             seekbar.progress = 0
         }
