@@ -1,5 +1,6 @@
 package com.example.myandroidapp
 
+import android.content.ContentProviderClient
 import android.content.Context
 import android.content.Intent
 import android.location.LocationManager
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
     private lateinit var calculator: Button
+    private lateinit var mp3: Button
     private lateinit var longitude: TextView
     private lateinit var latitude: TextView
 
@@ -29,8 +31,13 @@ class MainActivity : AppCompatActivity() {
         latitude = findViewById(R.id.gpsLatitude)
         calculator = findViewById(R.id.openCalculator)
         calculator.setOnClickListener {
-            val intent = Intent(this, Calculator::class.java)
-            startActivity(intent)
+            val intentcalculator = Intent(this, Calculator::class.java)
+            startActivity(intentcalculator)
+        }
+        mp3 = findViewById(R.id.openMP3)
+        mp3.setOnClickListener{
+            val  intentmp3 = Intent(this, mp3player::class.java)
+            startActivity(intentmp3)
         }
     }
 }

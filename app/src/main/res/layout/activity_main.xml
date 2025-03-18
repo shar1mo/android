@@ -17,6 +17,13 @@
         android:backgroundTint="@color/red"
         android:text="calculator" />
 
+    <Button
+        android:id="@+id/openMP3"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:backgroundTint="@color/red"
+        android:text="mp3" />
+
     <TextView
         android:id="@+id/gpsLongitude"
         android:layout_width="150dp"
