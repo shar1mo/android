@@ -12,16 +12,12 @@ import android.widget.SeekBar
 import android.widget.TextView
 
 class mp3player : AppCompatActivity() {
-    private lateinit var runnable: Runnable
-    private var handler = Handler()
-    private lateinit var seekbar: SeekBar
-    private lateinit var songname: TextView
-    private lateinit var play: Button
-    private lateinit var prev: Button
-    private lateinit var next: Button
-    private lateinit var playlist: Array<MediaPlayer>
-    private lateinit var songTitles : Array<String>
-    private var indexSound = 0
+    private lateinit var runnable: Runnable; private var handler = Handler()
+    private lateinit var seekbar: SeekBar; private lateinit var songname: TextView
+    private lateinit var play: Button; private lateinit var prev: Button
+    private lateinit var next: Button; private lateinit var cyclebtn: Button
+    private lateinit var playlist: Array<MediaPlayer>; private lateinit var songTitles : Array<String>
+    private var indexSound = 0; private var cycleval = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,6 +31,7 @@ class mp3player : AppCompatActivity() {
         next = findViewById(R.id.next_button)
         play = findViewById(R.id.play_button)
         prev = findViewById(R.id.prev_button)
+        cyclebtn = findViewById(R.id.cyclebtn)
         playlist = arrayOf(
             MediaPlayer.create(this@mp3player,R.raw.bmb),
             MediaPlayer.create(this@mp3player,R.raw.boulev)
@@ -47,25 +44,46 @@ class mp3player : AppCompatActivity() {
         seekbar.progress = 0
     }
 
-    override fun onResume() {
-        super.onResume()
-        play.setOnClickListener{
+    override fun onStart() {
+        super.onStart()
+
+        fun endsong(){
+            playlist[indexSound].setOnCompletionListener {
+                if(cycleval){
+                    playlist[indexSound].seekTo(0)
+                    playlist[indexSound].start()
+                }else{
+                    playlist[indexSound].stop()
+                    playlist[indexSound].prepare()
+
+                    indexSound = (indexSound + 1) % playlist.size
+                    seekbar.max = playlist[indexSound].duration
+                    playlist[indexSound].start()
+                    songname.text = "${songTitles[indexSound]}"
+                }
+            }
+        }
+        fun play(){
+            songname.text = "${songTitles[indexSound]}"
+            seekbar.max = playlist[indexSound].duration
             if(!playlist[indexSound].isPlaying){
-            playlist[indexSound].start()
-                songname.text = "${songTitles[indexSound]}"
+                playlist[indexSound].start()
             }else{
                 playlist[indexSound].pause()
             }
         }
-        next.setOnClickListener{
+
+        fun next(){
             playlist[indexSound].stop()
             playlist[indexSound].prepare()
 
             indexSound = (indexSound + 1) % playlist.size
+            seekbar.max = playlist[indexSound].duration
             playlist[indexSound].start()
             songname.text = "${songTitles[indexSound]}"
         }
-        prev.setOnClickListener{
+
+        fun prev(){
             playlist[indexSound].stop()
             playlist[indexSound].prepare()
 
@@ -74,23 +92,48 @@ class mp3player : AppCompatActivity() {
             }else{
                 indexSound = (indexSound - 1) % playlist.size
             }
+            seekbar.max = playlist[indexSound].duration
             playlist[indexSound].start()
             songname.text = "${songTitles[indexSound]}"
         }
-        seekbar.max = playlist[indexSound].duration
+
+        fun cyclefun(){
+            cycleval = !cycleval
+            if (cycleval){
+                cyclebtn.text = "cycle on"
+            }else{
+                cyclebtn.text = "cycle off"
+            }
+        }
+
+        play.setOnClickListener{
+            play()
+            endsong()
+        }
+
+        next.setOnClickListener{
+            next()
+            endsong()
+        }
+
+        prev.setOnClickListener{
+            prev()
+            endsong()
+        }
+
+        cyclebtn.setOnClickListener{
+            cyclefun()
+        }
+
         seekbar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, pos: Int, changed: Boolean) {
                 if(changed){
                     playlist[indexSound].seekTo(pos)
                 }
             }
-
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-
             }
-
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-
             }
         })
         runnable = Runnable {

@@ -45,8 +45,8 @@ class Calculator : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         btnC.setOnClickListener {
             val currentText = math_operation.text.toString()
             if (currentText.isNotEmpty()) {

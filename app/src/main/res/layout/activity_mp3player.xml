@@ -10,14 +10,25 @@
     android:background="@color/black"
     android:orientation="vertical"
     android:gravity="center">
+    <Button
+        android:id="@+id/cyclebtn"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end"
+        android:text="cycle"
+        android:backgroundTint="@color/red"
+        android:textSize="9dp"
+        />
+
     <TextView
         android:id="@+id/songname"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:textColor="@color/red"
+        android:textColor="@color/grayl"
         android:gravity="center"
         android:textSize="25dp"
         android:singleLine="true"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -52,10 +63,10 @@
             android:textSize="20sp"
             android:backgroundTint="@color/red" />
     </LinearLayout>
+
     <SeekBar
         android:id="@+id/seekbar"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:progress="50"/>
-
+        android:progress="50" />
 </LinearLayout>
