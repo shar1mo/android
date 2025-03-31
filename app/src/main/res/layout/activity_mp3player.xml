@@ -10,6 +10,14 @@
     android:background="@color/black"
     android:orientation="vertical"
     android:gravity="center">
+
+    <SeekBar
+        android:id="@+id/volumeseek"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:progress="100" />
+
     <Button
         android:id="@+id/cyclebtn"
         android:layout_width="80dp"
