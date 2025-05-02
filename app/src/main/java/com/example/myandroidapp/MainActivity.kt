@@ -15,8 +15,7 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
     private lateinit var calculator: Button
     private lateinit var mp3: Button
-    private lateinit var longitude: TextView
-    private lateinit var latitude: TextView
+    private lateinit var gps: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +26,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        longitude = findViewById(R.id.gpsLongitude)
-        latitude = findViewById(R.id.gpsLatitude)
+
         calculator = findViewById(R.id.openCalculator)
         calculator.setOnClickListener {
             val intentcalculator = Intent(this, Calculator::class.java)
@@ -38,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         mp3.setOnClickListener{
             val  intentmp3 = Intent(this, mp3player::class.java)
             startActivity(intentmp3)
+        }
+        gps = findViewById(R.id.openGPS)
+        gps.setOnClickListener{
+            val intentgps = Intent(this, GpsActivity::class.java)
+            startActivity(intentgps)
         }
     }
 }
