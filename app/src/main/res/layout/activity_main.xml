@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/black"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".MainActivity">
 
     <Button
@@ -30,5 +31,12 @@
         android:layout_height="75dp"
         android:backgroundTint="@color/red"
         android:text="gps" />
+
+    <Button
+        android:id="@+id/openTcpClient"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:backgroundTint="@color/red"
+        android:text="tcp client" />
 
 </LinearLayout>
