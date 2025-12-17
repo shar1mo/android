@@ -103,7 +103,6 @@ class TcpClient : AppCompatActivity() {
                     tvResponse.text = "Connected: $reply"
                 }
 
-                // Отправка накопленных данных
                 sendQueue()
             } catch (t: Throwable) {
                 isConnected = false
@@ -214,7 +213,7 @@ class TcpClient : AppCompatActivity() {
                     }
                     iterator.remove()
                 } catch (_: Throwable) {
-                    break // если потеря соединения — оставляем данные в очереди
+                    break
                 }
             }
         }
